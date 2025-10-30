@@ -1,5 +1,4 @@
-import bcrypt from "bcryptjs";
-import User from "./models/user.js";
+import { User } from "./models/user.js";
 
 export default function (app, db) {
   // show the home page
@@ -11,15 +10,12 @@ export default function (app, db) {
   });
 
   // ============= PROFILE =============
-
   app.get("/profile", isLoggedIn, async function (req, res) {
     try {
-      const messages = await db.collection("messages").find().toArray();
       const user = await User.findById(req.session.userId);
 
       res.render("profile.ejs", {
-        user: user,
-        messages: messages,
+        user,
       });
     } catch (err) {
       console.log(err);
@@ -53,10 +49,10 @@ export default function (app, db) {
       }
 
       // find user
-      const user = await User.findOne({ "local.username": username });
+      const user = await User.findOne({ username: username });
 
       if (!user) {
-        req.session.loginMessage = "No user found";
+        req.session.loginMessage = "User not found";
         return res.redirect("/login");
       }
 
@@ -98,7 +94,7 @@ export default function (app, db) {
       }
 
       // check if user exists
-      const existingUser = await User.findOne({ "local.username": username });
+      const existingUser = await User.findOne({ username });
 
       if (existingUser) {
         req.session.signupMessage = "That username is already taken";
@@ -107,10 +103,9 @@ export default function (app, db) {
 
       // create user
       const newUser = new User();
-      newUser.local.username = username;
-      newUser.local.password = newUser.generateHash(password);
+      newUser.username = username;
+      newUser.password = newUser.generateHash(password);
       await newUser.save();
-      console.log("\n\n==== USERCREATED \n\n");
 
       // auto-login after signup
       req.session.userId = newUser._id;
@@ -128,8 +123,7 @@ export default function (app, db) {
       if (err) {
         console.log("Logout error:", err);
       }
-      console.log("\n\n==== LOGGINGOUT \n\n");
-      console.log("User has logged out!");
+      console.log("User has logged out");
       res.redirect("/");
     });
   });
