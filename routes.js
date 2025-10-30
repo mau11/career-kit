@@ -8,7 +8,6 @@ export default function (app, db) {
       return res.redirect("/profile");
     }
     res.render("index.ejs");
-    console.log("\n\n==== GOTPAGE \n\n");
   });
 
   // ============= PROFILE =============
@@ -31,7 +30,6 @@ export default function (app, db) {
   // ============= LOGIN =============
   function isLoggedIn(req, res, next) {
     if (req.session.userId) {
-      console.log("\n\n==== ISLOGGEDIN \n\n");
       return next();
     }
     res.redirect("/");
@@ -56,7 +54,6 @@ export default function (app, db) {
 
       // find user
       const user = await User.findOne({ "local.username": username });
-      console.log("\n\n====USER FOUND: ", user, "\n\n====");
 
       if (!user) {
         req.session.loginMessage = "No user found";
@@ -70,7 +67,6 @@ export default function (app, db) {
         req.session.loginMessage = "Wrong password";
         return res.redirect("/login");
       }
-      console.log("\n\n==== PWMATCH \n\n");
 
       // Create session
       req.session.userId = user._id;

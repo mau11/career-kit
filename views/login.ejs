@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome</title>
+    <title>Login - Career Kit</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1><a href="/">Welcome </a></h1>
+    <header>
+      <h1><a href="/">Career Kit </a></h1>
+    </header>
     <main>
       <h2>Log in</h2>
 
-      <% if (message.length > 0) { %> <%= message %> <% } %>
-
-      <!-- LOGIN FORM -->
+      <span class="error">
+        <% if (message.length > 0) { %> <%= message %> <% } %>
+      </span>
       <form class="center" action="/login" method="post">
         <div class="form-row">
           <label for="username">Username</label>
@@ -24,8 +26,6 @@
 
         <button type="submit">Login</button>
       </form>
-
-      <hr />
 
       <p class="subtext">Need an account? <a href="/signup">Sign Up</a></p>
     </main>
