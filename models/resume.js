@@ -51,8 +51,7 @@ const resumeSchema = mongoose.Schema(
         location: String,
         graduationDate: Date,
         gpa: Number,
-        honors: [String], // ["Summa Cum Laude", "Dean's List"]
-        relevantCoursework: [String],
+        additional: [String],
       },
     ],
 
@@ -60,54 +59,15 @@ const resumeSchema = mongoose.Schema(
       technical: [String], // ["JavaScript", "Python", "React"]
       languages: [String], // ["English", "Spanish"]
       soft: [String], // ["Leadership", "Communication"]
-      tools: [String], // ["Git", "Docker", "Figma"]
     },
-
-    projects: [
-      {
-        name: String,
-        description: String,
-        technologies: [String],
-        url: String,
-        githubUrl: String,
-        startDate: Date,
-        endDate: Date,
-      },
-    ],
-
-    publications: [
-      {
-        title: String,
-        publisher: String,
-        publicationDate: Date,
-        url: String,
-        authors: [String],
-        description: String,
-      },
-    ],
-
-    volunteer: [
-      {
-        role: String,
-        organization: String,
-        location: String,
-        startDate: Date,
-        endDate: Date,
-        currentRole: { type: Boolean, default: false },
-        description: String,
-      },
-    ],
 
     settings: {
       template: { type: String, default: "modern" },
-      primaryColor: { type: String, default: "black" },
-      fontSize: { type: String, default: "medium" },
-      sectionsOrder: [String], // ["summary", "experience", "education", "skills"]
-      hiddenSections: [String], // sections user wants to hide
+      primaryColor: String,
+      isDefault: { type: Boolean, default: false }, // primary resume?
     },
 
     title: { type: String, default: "My Resume" }, // user can name different versions
-    isDefault: { type: Boolean, default: false }, // primary resume?
   },
   { timestamps: true }
 );

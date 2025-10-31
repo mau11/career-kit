@@ -127,4 +127,19 @@ export default function (app, db) {
       res.redirect("/");
     });
   });
+
+  // ============= RESUMES =============
+  app.get("/resumes", isLoggedIn, async function (req, res) {
+    const message = req.session.resumeMessage || "";
+    req.session.resumeMessage = null;
+
+    try {
+      const user = await User.findById(req.session.userId);
+
+      res.render("resumes.ejs", { message, user });
+    } catch (err) {
+      console.log(err);
+      res.redirect("/profile");
+    }
+  });
 }
