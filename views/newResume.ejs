@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Career Kit</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Career Kit</a></h1>
+      <nav>
+        <h3><a href="/resumes">← Back to Resumes</a></h3>
+        <a href="/logout" class="button">Logout</a>
+      </nav>
+    </header>
+
+    <main>
+      <h2>Create a New Resume</h2>
+      <form class="resume-form" action="/resume" method="POST">
+        <!-- BASIC INFO -->
+        <h3>Basic Information</h3>
+        <div class="form-group">
+          <label for="title">Resume Title *</label>
+          <input type="text" id="title" name="title" required />
+        </div>
+        <section class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+          <div class="form-group sm-width">
+            <label for="middleInitial">Initial</label>
+            <input
+              type="text"
+              id="middleInitial"
+              name="middleInitial"
+              maxlength="1"
+            />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+        </section>
+        <section class="form-row">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" />
+          </div>
+        </section>
+        <section class="form-row">
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" />
+          </div>
+        </section>
+        <section class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" />
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" />
+          </div>
+          <div class="form-group sm-width">
+            <label for="zipCode">Zip Code</label>
+            <input type="text" id="zipCode" name="zipCode" />
+          </div>
+        </section>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input type="text" id="country" name="country" />
+        </div>
+        <section class="form-row">
+          <div class="form-group">
+            <label for="website">Website</label>
+            <input type="url" id="website" name="website" />
+          </div>
+          <div class="form-group">
+            <label for="linkedIn">LinkedIn</label>
+            <input type="url" id="linkedIn" name="linkedIn" />
+          </div>
+        </section>
+        <section class="form-row">
+          <div class="form-group">
+            <label for="github">GitHub</label>
+            <input type="url" id="github" name="github" />
+          </div>
+          <div class="form-group">
+            <label for="portfolio">Portfolio</label>
+            <input type="url" id="portfolio" name="portfolio" />
+          </div>
+        </section>
+
+        <!-- SUMMARY -->
+        <h3>Professional Summary</h3>
+        <section class="form-row">
+          <div class="form-group">
+            <label for="summary">Summary</label>
+            <textarea id="summary" name="summary"></textarea>
+          </div>
+        </section>
+
+        <!-- WORK EXPERIENCE -->
+        <h3>Work Experience</h3>
+        <div id="experience-container">
+          <h4>Experience 1</h4>
+          <section class="form-row">
+            <div class="form-group">
+              <label>Job Title</label>
+              <input type="text" name="experience[0][jobTitle]" />
+            </div>
+            <div class="form-group">
+              <label>Company</label>
+              <input type="text" name="experience[0][company]" />
+            </div>
+            <div class="form-group sm-width">
+              <label>Location</label>
+              <input type="text" name="experience[0][location]" />
+            </div>
+          </section>
+          <section class="form-row">
+            <div class="form-group">
+              <label>Start Date</label>
+              <input type="date" name="experience[0][startDate]" />
+            </div>
+            <div class="form-group">
+              <label>End Date</label>
+              <input type="date" name="experience[0][endDate]" />
+            </div>
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                name="experience[0][currentJob]"
+                value="true"
+              />
+              Current Role
+            </label>
+          </section>
+          <section class="form-row">
+            <div class="form-group">
+              <label>Responsibilities</label>
+              <textarea name="experience[0][responsibilities]"></textarea>
+            </div>
+          </section>
+        </div>
+        <button type="button" onclick="addExperience()">
+          + Add Experience
+        </button>
+
+        <!-- EDUCATION -->
+        <h3>Education</h3>
+        <div id="education-container">
+          <h4>Education 1</h4>
+          <section class="form-row">
+            <div class="form-group">
+              <label>School</label>
+              <input type="text" name="education[0][school]" />
+            </div>
+            <div class="form-group">
+              <label>Location</label>
+              <input type="text" name="education[0][location]" />
+            </div>
+          </section>
+          <section class="form-row">
+            <div class="form-group">
+              <label>Degree</label>
+              <input type="text" name="education[0][degree]" />
+            </div>
+            <div class="form-group">
+              <label>Major</label>
+              <input type="text" name="education[0][major]" />
+            </div>
+            <div class="form-group">
+              <label>Minor</label>
+              <input type="text" name="education[0][minor]" />
+            </div>
+          </section>
+
+          <section class="form-row">
+            <div class="form-group">
+              <label>Graduation Date</label>
+              <input type="date" name="education[0][graduationDate]" />
+            </div>
+            <div class="form-group">
+              <label>GPA</label>
+              <input type="number" step="0.01" name="education[0][gpa]" />
+            </div>
+          </section>
+          <section class="form-row">
+            <div class="form-group">
+              <label>Additional Information</label>
+              <textarea name="education[0][additional]"></textarea>
+            </div>
+          </section>
+        </div>
+        <button type="button" onclick="addEducation()">+ Add Education</button>
+
+        <!-- SKILLS -->
+        <h3>Skills</h3>
+        <section class="form-row">
+          <div class="form-group">
+            <label>Technical Skills (comma separated)</label>
+            <textarea name="skills[technical]"></textarea>
+          </div>
+        </section>
+        <section class="form-row">
+          <div class="form-group">
+            <label>Languages (comma separated)</label>
+            <textarea name="skills[languages]"></textarea>
+          </div>
+        </section>
+        <section class="form-row">
+          <div class="form-group">
+            <label>Soft Skills (comma separated)</label>
+            <textarea name="skills[soft]"></textarea>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <h3>Resume Settings</h3>
+
+        <section class="form-row">
+          <div class="form-group">
+            <label>Template</label>
+            <select name="settings[template]">
+              <option value="modern">Modern</option>
+              <option value="classic">Classic</option>
+              <option value="minimal">Minimal</option>
+              <option value="creative">Creative</option>
+            </select>
+          </div>
+
+          <div class="form-group sm-width">
+            <label>Primary Color</label>
+            <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/color -->
+            <input type="color" name="settings[primaryColor]" value="#000000" />
+          </div>
+
+          <label class="checkbox-label">
+            <input type="checkbox" name="isDefault" value="true" />
+            Set as Default Resume
+          </label>
+        </section>
+        <button type="submit">Create Resume</button>
+      </form>
+    </main>
+    <script src="/main.js"></script>
+  </body>
+</html>

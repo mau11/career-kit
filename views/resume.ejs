@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Career Kit</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Career Kit</a></h1>
+      <nav>
+        <h3><a href="/profile">← Back to Profile</a></h3>
+        <a href="/logout" class="button">Logout</a>
+      </nav>
+    </header>
+
+    <main>
+      <h2>My Resumes</h2>
+      <% if (resumes && resumes.length > 0) { %>
+      <ul class="card-list">
+        <% for(let i=0; i<resumes.length; i++) {%>
+        <li class="list-card">
+          <a href="/resume/<%= resumes[i]._id %>" class="card-link">
+            <h4>
+              <%= resumes[i].title %>
+              <% if (resumes[i].isDefault) { %>
+                <span class="badge">Default</span>
+              <% } %>
+            </h4>
+            <p>
+              <%= resumes[i].fullName || resumes[i].firstName + ' ' +
+              resumes[i].lastName %>
+            </p>
+            <p class="meta">
+              Last updated: <%= new
+              Date(resumes[i].updatedAt).toLocaleDateString() %>
+            </p>
+          </a>
+        </li>
+        <% } %>
+      </ul>
+      <% } else { %>
+        <p>You don't have any resumes yet, create one below:</p>
+        <a href="/resumes/new" class="button">Add Resume</a>
+      <% } %>
+    </main>
+
+  </body>
+</html>
