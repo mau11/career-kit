@@ -74,7 +74,7 @@ main {
   margin: 2em;
 }
 
-form {
+.form {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
@@ -86,7 +86,7 @@ form.list {
   margin: 1em 1em 2em;
 }
 
-form center {
+form.center {
   justify-content: center;
   align-items: center;
 }
@@ -100,6 +100,47 @@ form center {
 .form-row > textarea {
   width: 50%;
   min-height: 80px;
+}
+
+.resume-form,
+#experience-container,
+#education-container,
+.resume-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+
+    input {
+      height: unset;
+    }
+  }
+}
+
+.resume-form .form-group {
+  position: relative;
+  display: flex;
+  flex: 1;
+
+  label {
+    font-size: 0.75em;
+    position: absolute;
+    top: -14px;
+  }
+
+  input,
+  select,
+  textarea {
+    flex: 1;
+  }
+}
+
+.form-group.sm-width {
+  flex: 0.5;
 }
 
 input,
@@ -205,11 +246,6 @@ textarea:focus {
   cursor: pointer;
 }
 
-.ideas-table {
-  width: 100%;
-  margin-bottom: 2em;
-}
-
 th,
 td {
   padding: 1em;
@@ -266,6 +302,14 @@ thead th {
 
   form {
     flex-direction: column;
+  }
+
+  .resume-form .form-row {
+    flex-direction: column;
+
+    .form-group {
+      width: 100%;
+    }
   }
 }
 
