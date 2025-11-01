@@ -1,4 +1,5 @@
 import { User } from "./models/user.js";
+import { Resume } from "./models/resume.js";
 
 export default function (app, db) {
   // show the home page
@@ -135,11 +136,71 @@ export default function (app, db) {
 
     try {
       const user = await User.findById(req.session.userId);
+      const resumes = await Resume.find({ userId: req.session.userId });
 
-      res.render("resumes.ejs", { message, user });
+      res.render("resume.ejs", { message, user, resumes });
     } catch (err) {
       console.log(err);
       res.redirect("/profile");
+    }
+  });
+
+  app.get("/resumes/new", isLoggedIn, async function (req, res) {
+    const message = req.session.newResumeMessage || "";
+    req.session.newResumeMessage = null;
+
+    try {
+      const user = await User.findById(req.session.userId);
+
+      res.render("newResume.ejs", { message, user });
+    } catch (err) {
+      console.log(err);
+      res.redirect("/resumes");
+    }
+  });
+
+  // process the resume data
+  app.post("/resume", async function (req, res) {
+    try {
+      const resumeData = {
+        userId: req.session.userId,
+        title: req.body.title,
+        firstName: req.body.firstName,
+        middleInitial: req.body.middleInitial,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        zipCode: req.body.zipCode,
+        country: req.body.country,
+        website: req.body.website,
+        linkedIn: req.body.linkedIn,
+        github: req.body.github,
+        portfolio: req.body.portfolio,
+        summary: req.body.summary,
+        experience: experience,
+        education: education,
+        skills: {
+          technical: req.body.skills?.technical,
+          languages: req.body.skills?.languages,
+          soft: req.body.skills?.soft,
+        },
+        settings: {
+          template: req.body.settings?.template,
+          primaryColor: req.body.settings?.primaryColor || "#000000",
+          isDefault: req.body.isDefault,
+        },
+      };
+
+      const newResume = new Resume(resumeData);
+      await newResume.save();
+
+      res.redirect(`/resume/${newResume._id}`);
+    } catch (err) {
+      console.log(err);
+      res.redirect("/resumes");
     }
   });
 }
