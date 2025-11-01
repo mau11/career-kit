@@ -1,6 +1,6 @@
-# Idea Tracker
+# Career Kit
 
-> My portfolio as a software engineer.
+> Build the perfect resume and export it from a choice of beautifully designed PDFs.
 
 ## Table of Contents
 
@@ -9,14 +9,17 @@
 1. [Development](#development)
    1. [Installing Dependencies](#installing-dependencies)
    1. [Running the Server](#running-the-server)
+   1. [View Application](#view-application)
 
 ## Tech Stack
 
+- **JavaScript**
+- **CSS**
+- **EJS**
+- **Node.js**
+- **Express**
 - **MongoDB**
 - **Mongoose**
-- **JavaScript**
-- **Node.js**
-- **EJSs**
 
 ## Requirements
 
@@ -25,9 +28,26 @@
 
 ## Development
 
-#### Installing Dependencies
+#### Setting up Database
 
-From within the root directory:
+Setup up a [MongoDB Atlas account](https://www.mongodb.com/). Create a new database called `career-kit` with the collections: `users`, and `resumes`.
+
+#### Environment Variables
+
+Run the command below to copy environment variables from the example, then add your values and save.
+
+```sh
+$ cp .env.example .env
+```
+
+| Environment Variable | Notes                                                                                                                                                 |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PORT                 | port number (default: 8000)                                                                                                                           |
+| DB_NAME              | MongoDB database name                                                                                                                                 |
+| DB_CONNECTION_STRING | MongoDB connection string in the format: `mongodb+srv://myDatabaseUser:D1fficultP%40ssw0rd@cluster0.example.mongodb.net/?retryWrites=true&w=majority` |
+| SESSION_SECRET       | complex session secret for password encryption (default: 'topsecret')                                                                                 |
+
+#### Installing Dependencies
 
 ```sh
 $ nvm use
@@ -36,43 +56,12 @@ $ pnpm install
 
 #### Running the Server
 
-Once dependencies are installed, run the following command to start the development server:
+Once dependencies have been installed, run the following command to start the development server:
 
 ```sh
 $ pnpm dev
 ```
 
-Your application will be available at http://localhost:3000. -->
+#### View Application
 
-# Simple NASA API
-
-> View NASA's Photo/Video of the Day by selecting your desired date.
-
-> <img src="./images/screenshot.png" alt="Screenshot of completed NASA API App" width="500">
-
-## Table of Contents
-
-1. [Tech Stack](#tech-stack)
-1. [Development](#development)
-   1. [NASA API](#nasa-api)
-   1. [Notes](#notes)
-
-## Tech Stack
-
-- **HTML**
-- **CSS**
-- **JavaScript**
-
-## Development
-
-### NASA API
-
-- Obtain a free API key from NASA at: https://api.nasa.gov/
-- Update the `NASA_API_KEY` value with your key on line 1 of main.js.
-- Open the app in your browser, and select a date to view the photo/video of the day!
-
-### Notes
-
-Visit the official documentation at https://api.nasa.gov/ for more information on API use, copyright, and rate limitations.
-
-_Due to lack of Federal funding, NASA's photo/video of the day API is no longer being updated beyond October 1, 2025._
+You can view the app in your browser at http://localhost:8000.
