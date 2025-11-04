@@ -180,8 +180,8 @@ export default function (app, db) {
         github: req.body.github,
         portfolio: req.body.portfolio,
         summary: req.body.summary,
-        experience: experience,
-        education: education,
+        experience: req.body.experience,
+        education: req.body.education,
         skills: {
           technical: req.body.skills?.technical,
           languages: req.body.skills?.languages,

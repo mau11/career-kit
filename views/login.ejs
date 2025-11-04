@@ -2,11 +2,13 @@
 <html>
   <head>
     <title>Login - Career Kit</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <h1><a href="/">Career Kit </a></h1>
+      <h1><a href="/">Career Kit</a></h1>
     </header>
     <main>
       <h2>Log in</h2>
@@ -14,7 +16,7 @@
       <span class="error">
         <% if (message.length > 0) { %> <%= message %> <% } %>
       </span>
-      <form class="form center" action="/login" method="post">
+      <form action="/login" method="post">
         <div class="form-row">
           <label for="username">Username</label>
           <input type="text" name="username" id="username" />
@@ -27,7 +29,25 @@
         <button type="submit">Login</button>
       </form>
 
-      <p class="subtext">Need an account? <a href="/signup">Sign Up</a></p>
+      <p class="subtext">Need an account? <a href="/signup">Sign up</a></p>
     </main>
+
+    <footer>
+      <a
+        href="https://github.com/mau11/career-kit"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit Career Kit GitHub Repository"
+      >
+        <p>
+          <span>&copy; 2025 Career Kit.</span>
+          <span>All rights reserved.</span>
+          <span class="github">
+            Created by Mau
+            <img src="/images/github-mark.png" alt="GitHub Logo" />
+          </span>
+        </p>
+      </a>
+    </footer>
   </body>
 </html>

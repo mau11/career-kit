@@ -2,6 +2,8 @@
 
 > Build the perfect resume and export it from a choice of beautifully designed PDFs.
 
+<img src="./public/images/screenshot.png" alt="Screenshot of completed Career Kit app" height="300">
+
 ## Table of Contents
 
 1. [Tech Stack](#tech-stack)
@@ -9,7 +11,8 @@
 1. [Development](#development)
    1. [Installing Dependencies](#installing-dependencies)
    1. [Running the Server](#running-the-server)
-   1. [View Application](#view-application)
+1. [View Application](#view-application)
+1. [Deployment](#Deployment)
 
 ## Tech Stack
 
@@ -20,6 +23,7 @@
 - **Express**
 - **MongoDB**
 - **Mongoose**
+- **Render**
 
 ## Requirements
 
@@ -62,6 +66,14 @@ Once dependencies have been installed, run the following command to start the de
 $ pnpm dev
 ```
 
-#### View Application
+## View Application
 
 You can view the app in your browser at http://localhost:8000.
+
+## Deployment
+
+View the latest deploy on Render at: https://career-kit.onrender.com. Sign up for a new account or use credentials below.
+
+**username**: test
+
+**password**: password
