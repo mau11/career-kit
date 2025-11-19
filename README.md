@@ -1,5 +1,7 @@
 # Career Kit
 
+![Static Badge](https://img.shields.io/badge/WORK%20IN%20PROGRESS-darkgreen)
+
 > Build the perfect resume and export it from a choice of beautifully designed PDFs.
 
 <img src="./public/images/screenshot.png" alt="Screenshot of completed Career Kit app" height="300">
